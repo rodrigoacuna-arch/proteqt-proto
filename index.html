@@ -17,6 +17,7 @@ Proteqt prototype · HTML
 --success:#00C2A3;--success-bg:#C8FFE8;
 --warning:#F59E0B;--warning-bg:#FEF3C7;
 --danger:#EF4444;--danger-bg:#FEE2E2;
+--blue:#3B82F6;--blue-dark:#2563EB;--blue-bg:#DBEAFE;--blue-bg-soft:#EFF6FF;
 --gray-50:#F9F9F7;--gray-100:#F0F0E7;--gray-200:#E5E5DE;--gray-300:#D0D0D0;
 --gray-400:#8B8B8D;--gray-500:#6B6B6D;--gray-600:#4B4B4D;
 --gray-700:#333;--gray-800:#1C1C1C;--gray-900:#1C1C1C;
@@ -33,46 +34,76 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 .header-close:hover{background:var(--gray-200)}
 .header-title{font-family:var(--font-heading);font-size:20px;font-weight:700;letter-spacing:-.3px}
 .header-title span{color:var(--primary)}
+.header-actions{display:flex;align-items:center;gap:8px}
 .header-help{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gray-200);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);font-size:14px;font-weight:600;color:var(--gray-500)}
 .header-help:hover{border-color:var(--primary);color:var(--primary)}
+.header-incident-btn{width:36px;height:36px;border-radius:50%;border:none;background:var(--danger);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);color:#fff}
+.header-incident-btn:hover{background:#DC2626;transform:scale(1.05)}
 .content{padding:0 20px 100px}
+
+/* Summary banner - improved */
+.summary-banner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:20px 0 4px}
+.summary-item{background:var(--gray-50);border-radius:var(--radius-md);padding:14px 12px;text-align:center}
+.summary-number{font-family:var(--font-heading);font-size:24px;font-weight:700;letter-spacing:-1px}
+.summary-number.green{color:var(--primary)}
+.summary-number.amber{color:var(--warning)}
+.summary-number.blue{color:var(--blue)}
+.summary-label{font-size:11px;color:var(--gray-500);margin-top:2px;font-weight:500}
+.summary-detail{font-size:10px;color:var(--gray-400);margin-top:2px;font-weight:600}
+
+/* Insurance type indicators */
+.type-indicator{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:100px}
+.type-payment{background:var(--primary-bg);color:var(--primary-dark)}
+.type-device{background:var(--blue-bg);color:var(--blue-dark)}
+.type-icon{width:14px;height:14px;flex-shrink:0}
+
 .section-title{font-family:var(--font-heading);font-size:18px;font-weight:600;color:var(--gray-900);margin:28px 0 14px;letter-spacing:-.2px}
 .section-subtitle{font-size:13px;color:var(--gray-500);margin-top:-8px;margin-bottom:14px}
 .insurance-tabs{display:flex;gap:8px;margin:20px 0 6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
 .insurance-tabs::-webkit-scrollbar{display:none}
-.tab-pill{flex-shrink:0;padding:8px 16px;border-radius:100px;border:1.5px solid var(--gray-200);background:#fff;font-size:13px;font-weight:600;color:var(--gray-600);cursor:pointer;transition:var(--transition);white-space:nowrap}
+.tab-pill{flex-shrink:0;padding:8px 16px;border-radius:100px;border:1.5px solid var(--gray-200);background:#fff;font-size:13px;font-weight:600;color:var(--gray-600);cursor:pointer;transition:var(--transition);white-space:nowrap;display:flex;align-items:center;gap:6px}
 .tab-pill:hover{border-color:var(--primary-light);color:var(--primary-dark)}
 .tab-pill.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.tab-pill .tab-count{font-size:11px;font-weight:700;background:rgba(0,0,0,.1);padding:1px 6px;border-radius:100px}
+.tab-pill.active .tab-count{background:rgba(255,255,255,.25)}
+
+/* Claims - improved hierarchy */
 .claims-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .claim-card{background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius-md);padding:14px;cursor:pointer;transition:var(--transition);position:relative;overflow:hidden}
 .claim-card:hover{border-color:var(--primary-light);box-shadow:var(--shadow-md);transform:translateY(-1px)}
 .claim-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
 .claim-card.status-open::before{background:var(--warning)}
 .claim-card.status-rejected::before{background:var(--danger)}
-.claim-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.claim-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
 .claim-store{font-family:var(--font-heading);font-size:15px;font-weight:600;color:var(--gray-900)}
 .claim-badge{font-size:11px;font-weight:600;padding:3px 8px;border-radius:100px}
 .badge-open{background:var(--warning-bg);color:#B45309}
 .badge-rejected{background:var(--danger-bg);color:#DC2626}
-.claim-type{font-size:12px;color:var(--gray-500);margin-bottom:6px}
-.claim-detail{font-size:13px;color:var(--gray-600);display:flex;align-items:center;gap:4px}
+.claim-type-tag{margin-bottom:8px}
+.claim-amount{font-family:var(--font-heading);font-size:20px;font-weight:700;color:var(--gray-900);margin-bottom:2px}
+.claim-product{font-size:12px;color:var(--gray-500);margin-bottom:6px}
+.claim-date{font-size:11px;color:var(--gray-400);display:flex;align-items:center;gap:4px}
+
+/* Product carousel */
 .carousel-wrapper{margin:0 -20px;padding:0 20px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .carousel-wrapper::-webkit-scrollbar{display:none}
 .carousel-track{display:flex;gap:12px;padding-right:20px}
 .product-card{flex-shrink:0;width:140px;cursor:pointer;transition:var(--transition)}
 .product-card:hover{transform:translateY(-2px)}
 .product-img{width:140px;height:160px;border-radius:var(--radius-md);background:var(--gray-100);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.product-img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
 .product-brand-logo{width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--gray-800);box-shadow:var(--shadow-sm);position:absolute;bottom:-12px;left:12px;border:2px solid #fff;letter-spacing:-.5px}
 .product-info{padding-top:18px}
 .product-store{font-family:var(--font-heading);font-size:14px;font-weight:600;color:var(--gray-900)}
 .product-name{font-size:12px;color:var(--gray-500);margin-top:1px}
+.product-type-tag{margin-top:6px}
+
+/* Renewal cards */
 .renewal-card{background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius-lg);padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;transition:var(--transition);cursor:pointer;position:relative;overflow:hidden}
 .renewal-card:hover{border-color:var(--primary-light);box-shadow:var(--shadow-md)}
 .renewal-card.urgent{border-color:var(--warning);background:linear-gradient(135deg,#FFFBEB 0%,#fff 40%)}
 .renewal-logo{width:48px;height:48px;border-radius:var(--radius-sm);background:var(--gray-100);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:800;color:var(--gray-700)}
 .renewal-info{flex:1;min-width:0}
-.renewal-type{font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.renewal-type-tag{margin-bottom:4px}
 .renewal-store{font-family:var(--font-heading);font-size:15px;font-weight:600;color:var(--gray-900)}
 .renewal-product{font-size:12px;color:var(--gray-500)}
 .renewal-meta{display:flex;align-items:center;gap:12px;margin-top:6px}
@@ -81,6 +112,13 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 .countdown-normal{color:var(--primary)}
 .btn-renew{padding:8px 18px;border-radius:100px;border:none;background:var(--primary);color:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition)}
 .btn-renew:hover{background:var(--primary-dark);transform:scale(1.03)}
+.progress-bar{width:100%;height:4px;background:var(--gray-200);border-radius:100px;margin-top:6px;overflow:hidden}
+.progress-fill{height:100%;border-radius:100px;transition:width .6s ease}
+.progress-fill.low{background:var(--danger)}
+.progress-fill.medium{background:var(--warning)}
+.progress-legend{font-size:10px;color:var(--gray-400);margin-top:3px;font-weight:500}
+
+/* Purchase items */
 .purchase-item{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--gray-100);cursor:pointer;transition:var(--transition)}
 .purchase-item:last-child{border-bottom:none}
 .purchase-item:hover{background:var(--gray-50);margin:0 -8px;padding:16px 8px;border-radius:var(--radius-sm)}
@@ -88,13 +126,19 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 .purchase-info{flex:1;min-width:0}
 .purchase-price{font-family:var(--font-heading);font-size:15px;font-weight:600;color:var(--gray-900)}
 .purchase-product{font-size:13px;color:var(--gray-700);font-weight:500}
+.purchase-type-tag{margin-top:4px}
 .purchase-date{font-size:12px;color:var(--gray-400)}
 .btn-policy{padding:8px 16px;border-radius:100px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);font-size:12px;font-weight:600;cursor:pointer;transition:var(--transition);flex-shrink:0}
 .btn-policy:hover{background:var(--primary-bg)}
-.incident-cta{margin:24px 0;padding:20px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:var(--radius-lg);text-align:center;cursor:pointer;transition:var(--transition)}
-.incident-cta:hover{border-color:var(--primary-light);background:var(--primary-bg)}
+
+/* Incident CTA - elevated */
+.incident-cta{margin:24px 0;padding:20px;background:linear-gradient(135deg,#FEE2E2 0%,#FFF 50%);border:1.5px solid var(--danger);border-radius:var(--radius-lg);text-align:center;cursor:pointer;transition:var(--transition);position:relative}
+.incident-cta:hover{box-shadow:0 4px 16px rgba(239,68,68,.15);transform:translateY(-1px)}
+.incident-cta::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--danger);border-radius:var(--radius-lg) var(--radius-lg) 0 0}
 .incident-title{font-family:var(--font-heading);font-size:15px;font-weight:600;color:var(--gray-900)}
 .incident-desc{font-size:13px;color:var(--gray-500);margin-top:4px}
+
+/* Modals */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
 .modal-overlay.active{opacity:1;pointer-events:all}
 .modal-sheet{background:#fff;border-radius:var(--radius-xl) var(--radius-xl) 0 0;width:100%;max-width:430px;max-height:85vh;padding:8px 0 0;transform:translateY(100%);transition:transform .35s cubic-bezier(.22,.61,.36,1);overflow-y:auto}
@@ -115,18 +159,27 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 .timeline-dot.active{background:var(--primary);color:#fff}
 .timeline-text{font-size:13px;color:var(--gray-600)}
 .timeline-date{font-size:11px;color:var(--gray-400);display:block;margin-top:2px}
-.protection-option{border:1.5px solid var(--gray-200);border-radius:var(--radius-md);padding:16px;margin-bottom:10px;cursor:pointer;transition:var(--transition)}
+.protection-option{border:1.5px solid var(--gray-200);border-radius:var(--radius-md);padding:16px;margin-bottom:10px;cursor:pointer;transition:var(--transition);position:relative}
 .protection-option:hover,.protection-option.selected{border-color:var(--primary);background:var(--primary-bg-soft)}
+.protection-option.type-device-option:hover,.protection-option.type-device-option.selected{border-color:var(--blue);background:var(--blue-bg-soft)}
 .option-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.option-name{font-family:var(--font-heading);font-size:15px;font-weight:600;color:var(--gray-900)}
+.option-name{font-family:var(--font-heading);font-size:15px;font-weight:600;color:var(--gray-900);display:flex;align-items:center;gap:6px}
 .option-price{font-size:15px;font-weight:700;color:var(--primary)}
+.type-device-option .option-price{color:var(--blue)}
 .option-desc{font-size:12px;color:var(--gray-500);line-height:1.4}
 .option-features{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .feature-tag{font-size:11px;font-weight:500;padding:3px 8px;border-radius:100px;background:var(--primary-bg);color:var(--primary-dark)}
+.feature-tag.blue{background:var(--blue-bg);color:var(--blue-dark)}
 .btn-primary-full{width:100%;padding:16px;border-radius:var(--radius-md);border:none;background:var(--primary);color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:var(--transition);margin-top:20px}
 .btn-primary-full:hover{background:var(--primary-dark)}
-.policy-coverage{background:var(--primary-bg-soft);border-radius:var(--radius-md);padding:16px;margin:16px 0}
-.coverage-label{font-family:var(--font-heading);font-size:12px;color:var(--primary-dark);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.btn-primary-full.blue{background:var(--blue)}
+.btn-primary-full.blue:hover{background:var(--blue-dark)}
+.policy-coverage{border-radius:var(--radius-md);padding:16px;margin:16px 0}
+.policy-coverage.payment{background:var(--primary-bg-soft)}
+.policy-coverage.device{background:var(--blue-bg-soft)}
+.coverage-label{font-family:var(--font-heading);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.coverage-label.payment{color:var(--primary-dark)}
+.coverage-label.device{color:var(--blue-dark)}
 .coverage-items{margin-top:8px}
 .coverage-item{font-size:13px;color:var(--gray-700);padding:4px 0;display:flex;align-items:center;gap:6px}
 .form-group{margin-bottom:16px}
@@ -140,10 +193,11 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 .progress-fill{height:100%;border-radius:100px;transition:width .6s ease}
 .progress-fill.low{background:var(--danger)}
 .progress-fill.medium{background:var(--warning)}
-.summary-banner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:20px 0 4px}
-.summary-item{background:var(--gray-50);border-radius:var(--radius-md);padding:14px 12px;text-align:center}
-.summary-number{font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--primary);letter-spacing:-1px}
-.summary-label{font-size:11px;color:var(--gray-500);margin-top:2px;font-weight:500}
+
+/* Filter transitions */
+.section-filterable{transition:opacity .3s ease, max-height .4s ease;overflow:hidden}
+.section-filterable.hidden{opacity:0;max-height:0 !important;margin:0;padding:0;pointer-events:none}
+
 @keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .animate-in{animation:fadeInUp .4s ease forwards;opacity:0}
 .delay-1{animation-delay:.05s}.delay-2{animation-delay:.1s}.delay-3{animation-delay:.15s}
@@ -155,109 +209,184 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
   <div class="header">
     <button class="header-close" onclick="showToast('Cerrando...')">&#x2715;</button>
     <div class="header-title">Prote<span>Qt</span></div>
-    <button class="header-help" onclick="openModal('help-modal')">?</button>
+    <div class="header-actions">
+      <button class="header-incident-btn" onclick="openModal('incident-modal')" title="Reportar incidencia">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </button>
+      <button class="header-help" onclick="openModal('help-modal')">?</button>
+    </div>
   </div>
   <div class="content">
+
+    <!-- SUMMARY BANNER - improved with micro-copy -->
     <div class="summary-banner animate-in delay-1">
-      <div class="summary-item"><div class="summary-number">3</div><div class="summary-label">Activas</div></div>
-      <div class="summary-item"><div class="summary-number">2</div><div class="summary-label">Reclamaciones</div></div>
-      <div class="summary-item"><div class="summary-number">2</div><div class="summary-label">Por renovar</div></div>
+      <div class="summary-item">
+        <div class="summary-number green">3</div>
+        <div class="summary-label">P&oacute;lizas activas</div>
+        <div class="summary-detail">239,94 &euro; cubiertos</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-number amber">2</div>
+        <div class="summary-label">Reclamaciones</div>
+        <div class="summary-detail">1 en curso</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-number blue">2</div>
+        <div class="summary-label">Por renovar</div>
+        <div class="summary-detail">1 urgente</div>
+      </div>
     </div>
+
+    <!-- TABS - functional filters -->
     <div class="insurance-tabs animate-in delay-2">
-      <button class="tab-pill active" onclick="filterTab(this,'all')">Todos</button>
-      <button class="tab-pill" onclick="filterTab(this,'payment')">Protecci&oacute;n de pago</button>
-      <button class="tab-pill" onclick="filterTab(this,'device')">Protecci&oacute;n electr&oacute;nica</button>
+      <button class="tab-pill active" onclick="filterTab(this,'all')">Todos <span class="tab-count">7</span></button>
+      <button class="tab-pill" onclick="filterTab(this,'payment')">
+        <svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Pago <span class="tab-count">5</span>
+      </button>
+      <button class="tab-pill" onclick="filterTab(this,'device')">
+        <svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Electr&oacute;nica <span class="tab-count">2</span>
+      </button>
     </div>
+
+    <!-- CLAIMS - improved hierarchy + type indicator -->
     <h2 class="section-title animate-in delay-2">Estado de tus reclamaciones</h2>
     <p class="section-subtitle animate-in delay-2">Seguimiento en tiempo real</p>
     <div class="claims-grid animate-in delay-3">
-      <div class="claim-card status-open" onclick="openModal('claim-modal-1')">
+      <div class="claim-card status-open section-filterable" data-type="payment" onclick="openModal('claim-modal-1')">
         <div class="claim-header"><span class="claim-store">Fnac</span><span class="claim-badge badge-open">En curso</span></div>
-        <div class="claim-type">Protecci&oacute;n de pago</div>
-        <div class="claim-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 329,44 &euro;</div>
+        <div class="claim-type-tag"><span class="type-indicator type-payment"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Pago</span></div>
+        <div class="claim-amount">329,44 &euro;</div>
+        <div class="claim-product">Compra Fnac</div>
+        <div class="claim-date"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Actualizado hace 2 d&iacute;as</div>
       </div>
-      <div class="claim-card status-rejected" onclick="openModal('claim-modal-2')">
+      <div class="claim-card status-rejected section-filterable" data-type="device" onclick="openModal('claim-modal-2')">
         <div class="claim-header"><span class="claim-store">Apple</span><span class="claim-badge badge-rejected">Rechazado</span></div>
-        <div class="claim-type">Protecci&oacute;n electr&oacute;nica</div>
-        <div class="claim-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> iPhone 15 Max</div>
+        <div class="claim-type-tag"><span class="type-indicator type-device"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Electr&oacute;nica</span></div>
+        <div class="claim-amount">iPhone 15 Max</div>
+        <div class="claim-product">Pantalla rota</div>
+        <div class="claim-date"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Resuelto 10 ene</div>
       </div>
     </div>
+
+    <!-- PRODUCT CAROUSEL - with type tags -->
     <h2 class="section-title animate-in delay-3">Protege tus compras</h2>
     <p class="section-subtitle animate-in delay-3">Basado en tus compras recientes con seQura</p>
     <div class="carousel-wrapper animate-in delay-4">
       <div class="carousel-track">
-        <div class="product-card" onclick="openModal('protect-modal-1')">
-          <div class="product-img"><div class="product-img-placeholder" style="background:linear-gradient(145deg,#C62828,#E53935)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.2"><path d="M20 21V5a2 2 0 00-2-2H6a2 2 0 00-2 2v16m16 0H4m16 0h2M4 21H2m8-14h4m-4 4h4m-4 4h4"/></svg></div><div class="product-brand-logo">ZARA</div></div>
-          <div class="product-info"><div class="product-store">Zara</div><div class="product-name">Americana roja</div></div>
+        <div class="product-card section-filterable" data-type="payment" onclick="openModal('protect-modal-1')">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=300&h=360&fit=crop&crop=center" alt="Americana roja" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md)"><div class="product-brand-logo">ZARA</div></div>
+          <div class="product-info">
+            <div class="product-store">Zara</div>
+            <div class="product-name">Americana roja</div>
+            <div class="product-type-tag"><span class="type-indicator type-payment" style="font-size:10px;padding:2px 6px"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Pago</span></div>
+          </div>
         </div>
-        <div class="product-card" onclick="openModal('protect-modal-2')">
-          <div class="product-img"><div class="product-img-placeholder" style="background:linear-gradient(145deg,#E65100,#FF6D00)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.2"><path d="M2 18l3-3h2l2-6h6l2 6h2l3 3"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div><div class="product-brand-logo" style="font-size:8px">NIKE</div></div>
-          <div class="product-info"><div class="product-store">Nike</div><div class="product-name">Zapatillas</div></div>
+        <div class="product-card section-filterable" data-type="payment" onclick="openModal('protect-modal-2')">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=360&fit=crop&crop=center" alt="Zapatillas Nike" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md)"><div class="product-brand-logo" style="font-size:8px">NIKE</div></div>
+          <div class="product-info">
+            <div class="product-store">Nike</div>
+            <div class="product-name">Zapatillas</div>
+            <div class="product-type-tag"><span class="type-indicator type-payment" style="font-size:10px;padding:2px 6px"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Pago</span></div>
+          </div>
         </div>
-        <div class="product-card" onclick="openModal('protect-modal-3')">
-          <div class="product-img"><div class="product-img-placeholder" style="background:linear-gradient(145deg,#1565C0,#42A5F5)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg></div><div class="product-brand-logo" style="font-size:7px">RAY BAN</div></div>
-          <div class="product-info"><div class="product-store">Ray-Ban</div><div class="product-name">Gafas de sol</div></div>
+        <div class="product-card section-filterable" data-type="payment" onclick="openModal('protect-modal-3')">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=300&h=360&fit=crop&crop=center" alt="Gafas Ray-Ban" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md)"><div class="product-brand-logo" style="font-size:7px">RAY BAN</div></div>
+          <div class="product-info">
+            <div class="product-store">Ray-Ban</div>
+            <div class="product-name">Gafas de sol</div>
+            <div class="product-type-tag"><span class="type-indicator type-payment" style="font-size:10px;padding:2px 6px"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Pago</span></div>
+          </div>
         </div>
-        <div class="product-card" onclick="openModal('protect-modal-4')">
-          <div class="product-img"><div class="product-img-placeholder" style="background:linear-gradient(145deg,#37474F,#546E7A)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="product-brand-logo" style="font-size:7px;background:#333;color:#fff">PCC</div></div>
-          <div class="product-info"><div class="product-store">PC Componentes</div><div class="product-name">Monitor 27"</div></div>
+        <div class="product-card section-filterable" data-type="device" onclick="openModal('protect-modal-4')">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=300&h=360&fit=crop&crop=center" alt="Monitor" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md)"><div class="product-brand-logo" style="font-size:7px;background:#333;color:#fff">PCC</div></div>
+          <div class="product-info">
+            <div class="product-store">PC Componentes</div>
+            <div class="product-name">Monitor 27"</div>
+            <div class="product-type-tag"><span class="type-indicator type-device" style="font-size:10px;padding:2px 6px"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Electr&oacute;nica</span></div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- RENEWALS - with progress legend -->
     <h2 class="section-title animate-in delay-4">Renueva tu protecci&oacute;n</h2>
     <p class="section-subtitle animate-in delay-4">Antes de que caduquen</p>
-    <div class="renewal-card urgent animate-in delay-5" onclick="openModal('renew-modal-1')">
+    <div class="renewal-card urgent animate-in delay-5 section-filterable" data-type="payment" onclick="openModal('renew-modal-1')">
       <div class="renewal-logo" style="background:#E8F5E8;color:#2E7D32">SKLM</div>
       <div class="renewal-info">
-        <div class="renewal-type">Protecci&oacute;n de pago</div>
+        <div class="renewal-type-tag"><span class="type-indicator type-payment"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Pago</span></div>
         <div class="renewal-store">Sklum</div>
         <div class="renewal-product">Sof&aacute;</div>
         <div class="renewal-meta"><span class="renewal-countdown countdown-urgent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 3 d&iacute;as restantes</span></div>
         <div class="progress-bar"><div class="progress-fill low" style="width:15%"></div></div>
+        <div class="progress-legend">3 de 20 d&iacute;as para vencimiento</div>
       </div>
       <div><button class="btn-renew" onclick="event.stopPropagation();openModal('renew-modal-1')">Renovar</button></div>
     </div>
-    <div class="renewal-card animate-in delay-5" onclick="openModal('renew-modal-2')">
+    <div class="renewal-card animate-in delay-5 section-filterable" data-type="device" onclick="openModal('renew-modal-2')">
       <div class="renewal-logo" style="background:#FFF3E0;color:#E65100"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
       <div class="renewal-info">
-        <div class="renewal-type">Protecci&oacute;n electr&oacute;nica</div>
+        <div class="renewal-type-tag"><span class="type-indicator type-device"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Electr&oacute;nica</span></div>
         <div class="renewal-store">PC Componentes</div>
         <div class="renewal-product">Port&aacute;til Lenovo</div>
         <div class="renewal-meta"><span class="renewal-countdown countdown-normal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 5 d&iacute;as restantes</span></div>
         <div class="progress-bar"><div class="progress-fill medium" style="width:35%"></div></div>
+        <div class="progress-legend">5 de 14 d&iacute;as para vencimiento</div>
       </div>
       <div><button class="btn-renew" onclick="event.stopPropagation();openModal('renew-modal-2')">Renovar</button></div>
     </div>
+
+    <!-- PROTECTED PURCHASES - with insurance type -->
     <h2 class="section-title animate-in delay-5">Compras protegidas</h2>
     <p class="section-subtitle animate-in delay-5">Tus p&oacute;lizas activas</p>
     <div class="animate-in delay-6">
-      <div class="purchase-item" onclick="openModal('policy-modal-1')">
+      <div class="purchase-item section-filterable" data-type="payment" onclick="openModal('policy-modal-1')">
         <div class="purchase-logo" style="background:#E8F5E9;color:#2E7D32">ECI</div>
-        <div class="purchase-info"><div class="purchase-price">48,15 &euro;</div><div class="purchase-product">Nevera LG</div><div class="purchase-date">10 de noviembre</div></div>
+        <div class="purchase-info">
+          <div class="purchase-price">48,15 &euro;</div>
+          <div class="purchase-product">Nevera LG</div>
+          <div class="purchase-type-tag"><span class="type-indicator type-payment" style="font-size:10px;padding:2px 6px"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span></div>
+          <div class="purchase-date">Vence 10 nov 2026</div>
+        </div>
         <button class="btn-policy" onclick="event.stopPropagation();openModal('policy-modal-1')">Ver p&oacute;liza</button>
       </div>
-      <div class="purchase-item" onclick="openModal('policy-modal-2')">
+      <div class="purchase-item section-filterable" data-type="payment" onclick="openModal('policy-modal-2')">
         <div class="purchase-logo" style="background:#F3F4F6">ZARA</div>
-        <div class="purchase-info"><div class="purchase-price">135,45 &euro;</div><div class="purchase-product">Americana Blue</div><div class="purchase-date">10 de noviembre</div></div>
+        <div class="purchase-info">
+          <div class="purchase-price">135,45 &euro;</div>
+          <div class="purchase-product">Americana Blue</div>
+          <div class="purchase-type-tag"><span class="type-indicator type-payment" style="font-size:10px;padding:2px 6px"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span></div>
+          <div class="purchase-date">Vence 10 nov 2026</div>
+        </div>
         <button class="btn-policy" onclick="event.stopPropagation();openModal('policy-modal-2')">Ver p&oacute;liza</button>
       </div>
-      <div class="purchase-item" onclick="openModal('policy-modal-3')">
+      <div class="purchase-item section-filterable" data-type="payment" onclick="openModal('policy-modal-3')">
         <div class="purchase-logo" style="background:#F3E5F5;color:#7B1FA2">ADI</div>
-        <div class="purchase-info"><div class="purchase-price">56,34 &euro;</div><div class="purchase-product">Zapatillas Adidas</div><div class="purchase-date">03 de noviembre</div></div>
+        <div class="purchase-info">
+          <div class="purchase-price">56,34 &euro;</div>
+          <div class="purchase-product">Zapatillas Adidas</div>
+          <div class="purchase-type-tag"><span class="type-indicator type-payment" style="font-size:10px;padding:2px 6px"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span></div>
+          <div class="purchase-date">Vence 3 nov 2026</div>
+        </div>
         <button class="btn-policy" onclick="event.stopPropagation();openModal('policy-modal-3')">Ver p&oacute;liza</button>
       </div>
     </div>
+
+    <!-- INCIDENT CTA - elevated visually -->
     <div class="incident-cta animate-in delay-6" onclick="openModal('incident-modal')">
-      <div style="margin-bottom:8px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-      <div class="incident-title">&iquest;Ha pasado algo? Gestiona tu incidencia</div>
-      <div class="incident-desc">Reporta un siniestro, robo o da&ntilde;o en tus productos protegidos</div>
+      <div style="margin-bottom:8px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <div class="incident-title">&iquest;Ha pasado algo? Reporta tu incidencia</div>
+      <div class="incident-desc">Siniestro, robo o da&ntilde;o &mdash; te ayudamos a gestionarlo</div>
     </div>
   </div>
 </div>
 
 <!-- MODALS -->
 <div class="modal-overlay" id="claim-modal-1" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
-  <div class="modal-title">Reclamaci&oacute;n Fnac</div><div class="modal-subtitle">Protecci&oacute;n de pago &middot; En curso</div>
+  <div style="margin-bottom:12px"><span class="type-indicator type-payment"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span></div>
+  <div class="modal-title">Reclamaci&oacute;n Fnac</div><div class="modal-subtitle">En curso &middot; Actualizado hace 2 d&iacute;as</div>
   <div class="detail-row"><span class="detail-label">Importe cubierto</span><span class="detail-value">329,44 &euro;</span></div>
   <div class="detail-row"><span class="detail-label">Tipo de cobertura</span><span class="detail-value">P&eacute;rdida de empleo</span></div>
   <div class="detail-row"><span class="detail-label">Fecha de solicitud</span><span class="detail-value">15 de febrero</span></div>
@@ -271,7 +400,8 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 </div></div></div>
 
 <div class="modal-overlay" id="claim-modal-2" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
-  <div class="modal-title">Reclamaci&oacute;n Apple</div><div class="modal-subtitle">Protecci&oacute;n electr&oacute;nica &middot; Rechazada</div>
+  <div style="margin-bottom:12px"><span class="type-indicator type-device"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Protecci&oacute;n electr&oacute;nica</span></div>
+  <div class="modal-title">Reclamaci&oacute;n Apple</div><div class="modal-subtitle">Rechazada &middot; 10 de enero</div>
   <div class="detail-row"><span class="detail-label">Dispositivo</span><span class="detail-value">iPhone 15 Max</span></div>
   <div class="detail-row"><span class="detail-label">Motivo del rechazo</span><span class="detail-value" style="color:var(--danger)">Fuera de cobertura</span></div>
   <div class="detail-row"><span class="detail-label">Fecha de solicitud</span><span class="detail-value">10 de enero</span></div>
@@ -282,31 +412,32 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 
 <div class="modal-overlay" id="protect-modal-1" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
   <div class="modal-title">Protege tu compra</div><div class="modal-subtitle">Zara &middot; Americana roja</div>
-  <div class="protection-option selected" onclick="selectOption(this)"><div class="option-header"><span class="option-name">Protecci&oacute;n de pago</span><span class="option-price">2,99 &euro;/mes</span></div><div class="option-desc">Te cubre en caso de p&eacute;rdida de empleo o baja m&eacute;dica.</div><div class="option-features"><span class="feature-tag">P&eacute;rdida de empleo</span><span class="feature-tag">Baja m&eacute;dica</span><span class="feature-tag">Hasta 12 meses</span></div></div>
+  <div class="protection-option selected" onclick="selectOption(this)"><div class="option-header"><span class="option-name"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span><span class="option-price">2,99 &euro;/mes</span></div><div class="option-desc">Te cubre en caso de p&eacute;rdida de empleo o baja m&eacute;dica.</div><div class="option-features"><span class="feature-tag">P&eacute;rdida de empleo</span><span class="feature-tag">Baja m&eacute;dica</span><span class="feature-tag">Hasta 12 meses</span></div></div>
   <button class="btn-primary-full" onclick="showToast('&iexcl;Protecci&oacute;n contratada!')">Contratar protecci&oacute;n &mdash; 2,99 &euro;/mes</button>
 </div></div></div>
 
 <div class="modal-overlay" id="protect-modal-2" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
   <div class="modal-title">Protege tu compra</div><div class="modal-subtitle">Nike &middot; Zapatillas</div>
-  <div class="protection-option selected" onclick="selectOption(this)"><div class="option-header"><span class="option-name">Protecci&oacute;n de pago</span><span class="option-price">1,49 &euro;/mes</span></div><div class="option-desc">Te cubre en caso de p&eacute;rdida de empleo o baja m&eacute;dica.</div><div class="option-features"><span class="feature-tag">P&eacute;rdida de empleo</span><span class="feature-tag">Baja m&eacute;dica</span></div></div>
+  <div class="protection-option selected" onclick="selectOption(this)"><div class="option-header"><span class="option-name"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span><span class="option-price">1,49 &euro;/mes</span></div><div class="option-desc">Te cubre en caso de p&eacute;rdida de empleo o baja m&eacute;dica.</div><div class="option-features"><span class="feature-tag">P&eacute;rdida de empleo</span><span class="feature-tag">Baja m&eacute;dica</span></div></div>
   <button class="btn-primary-full" onclick="showToast('&iexcl;Protecci&oacute;n contratada!')">Contratar protecci&oacute;n &mdash; 1,49 &euro;/mes</button>
 </div></div></div>
 
 <div class="modal-overlay" id="protect-modal-3" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
   <div class="modal-title">Protege tu compra</div><div class="modal-subtitle">Ray-Ban &middot; Gafas de sol</div>
-  <div class="protection-option selected" onclick="selectOption(this)"><div class="option-header"><span class="option-name">Protecci&oacute;n de pago</span><span class="option-price">1,99 &euro;/mes</span></div><div class="option-desc">Te cubre en caso de p&eacute;rdida de empleo o baja m&eacute;dica.</div><div class="option-features"><span class="feature-tag">P&eacute;rdida de empleo</span><span class="feature-tag">Baja m&eacute;dica</span></div></div>
+  <div class="protection-option selected" onclick="selectOption(this)"><div class="option-header"><span class="option-name"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span><span class="option-price">1,99 &euro;/mes</span></div><div class="option-desc">Te cubre en caso de p&eacute;rdida de empleo o baja m&eacute;dica.</div><div class="option-features"><span class="feature-tag">P&eacute;rdida de empleo</span><span class="feature-tag">Baja m&eacute;dica</span></div></div>
   <button class="btn-primary-full" onclick="showToast('&iexcl;Protecci&oacute;n contratada!')">Contratar protecci&oacute;n &mdash; 1,99 &euro;/mes</button>
 </div></div></div>
 
 <div class="modal-overlay" id="protect-modal-4" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
   <div class="modal-title">Protege tu compra</div><div class="modal-subtitle">PC Componentes &middot; Monitor 27"</div>
-  <div class="protection-option" onclick="selectOption(this)"><div class="option-header"><span class="option-name">Protecci&oacute;n de pago</span><span class="option-price">3,49 &euro;/mes</span></div><div class="option-desc">Te cubre en caso de p&eacute;rdida de empleo o baja m&eacute;dica.</div><div class="option-features"><span class="feature-tag">P&eacute;rdida de empleo</span><span class="feature-tag">Baja m&eacute;dica</span></div></div>
-  <div class="protection-option selected" onclick="selectOption(this)"><div class="option-header"><span class="option-name">Protecci&oacute;n electr&oacute;nica</span><span class="option-price">4,99 &euro;/mes</span></div><div class="option-desc">Cobertura frente a da&ntilde;o accidental y robo de tu dispositivo.</div><div class="option-features"><span class="feature-tag">Da&ntilde;o accidental</span><span class="feature-tag">Robo</span><span class="feature-tag">24 meses</span></div></div>
-  <button class="btn-primary-full" onclick="showToast('&iexcl;Protecci&oacute;n contratada!')">Contratar protecci&oacute;n &mdash; 4,99 &euro;/mes</button>
+  <div class="protection-option" onclick="selectOption(this)"><div class="option-header"><span class="option-name"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span><span class="option-price">3,49 &euro;/mes</span></div><div class="option-desc">Te cubre en caso de p&eacute;rdida de empleo o baja m&eacute;dica.</div><div class="option-features"><span class="feature-tag">P&eacute;rdida de empleo</span><span class="feature-tag">Baja m&eacute;dica</span></div></div>
+  <div class="protection-option type-device-option selected" onclick="selectOption(this)"><div class="option-header"><span class="option-name"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Protecci&oacute;n electr&oacute;nica</span><span class="option-price" style="color:var(--blue)">4,99 &euro;/mes</span></div><div class="option-desc">Cobertura frente a da&ntilde;o accidental y robo de tu dispositivo.</div><div class="option-features"><span class="feature-tag blue">Da&ntilde;o accidental</span><span class="feature-tag blue">Robo</span><span class="feature-tag blue">24 meses</span></div></div>
+  <button class="btn-primary-full blue" onclick="showToast('&iexcl;Protecci&oacute;n contratada!')">Contratar protecci&oacute;n &mdash; 4,99 &euro;/mes</button>
 </div></div></div>
 
 <div class="modal-overlay" id="renew-modal-1" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
-  <div class="modal-title">Renovar protecci&oacute;n</div><div class="modal-subtitle">Sklum &middot; Sof&aacute; &middot; Protecci&oacute;n de pago</div>
+  <div style="margin-bottom:12px"><span class="type-indicator type-payment"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span></div>
+  <div class="modal-title">Renovar protecci&oacute;n</div><div class="modal-subtitle">Sklum &middot; Sof&aacute;</div>
   <div style="background:var(--warning-bg);border-radius:var(--radius-md);padding:14px;margin-bottom:16px"><div style="font-size:13px;font-weight:600;color:#B45309">&#9888; Caduca en 3 d&iacute;as</div><div style="font-size:12px;color:var(--gray-600);margin-top:4px">Tu protecci&oacute;n actual vence el 5 de marzo. Renueva ahora para mantener tu cobertura activa.</div></div>
   <div class="detail-row"><span class="detail-label">Cobertura actual</span><span class="detail-value">P&eacute;rdida de empleo</span></div>
   <div class="detail-row"><span class="detail-label">Precio de renovaci&oacute;n</span><span class="detail-value">3,99 &euro;/mes</span></div>
@@ -315,40 +446,41 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 </div></div></div>
 
 <div class="modal-overlay" id="renew-modal-2" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
+  <div style="margin-bottom:12px"><span class="type-indicator type-device"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Protecci&oacute;n electr&oacute;nica</span></div>
   <div class="modal-title">Renovar protecci&oacute;n</div><div class="modal-subtitle">PC Componentes &middot; Port&aacute;til Lenovo</div>
   <div class="detail-row"><span class="detail-label">Cobertura actual</span><span class="detail-value">Da&ntilde;o + Robo</span></div>
   <div class="detail-row"><span class="detail-label">Precio de renovaci&oacute;n</span><span class="detail-value">5,99 &euro;/mes</span></div>
   <div class="detail-row"><span class="detail-label">Vencimiento</span><span class="detail-value">7 de marzo</span></div>
-  <button class="btn-primary-full" onclick="showToast('&iexcl;Protecci&oacute;n renovada con &eacute;xito!')">Renovar ahora &mdash; 5,99 &euro;/mes</button>
+  <button class="btn-primary-full blue" onclick="showToast('&iexcl;Protecci&oacute;n renovada con &eacute;xito!')">Renovar ahora &mdash; 5,99 &euro;/mes</button>
 </div></div></div>
 
 <div class="modal-overlay" id="policy-modal-1" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
+  <div style="margin-bottom:12px"><span class="type-indicator type-payment"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span></div>
   <div class="modal-title">P&oacute;liza activa</div><div class="modal-subtitle">El Corte Ingl&eacute;s &middot; Nevera LG</div>
   <div class="detail-row"><span class="detail-label">Importe cubierto</span><span class="detail-value">48,15 &euro;</span></div>
-  <div class="detail-row"><span class="detail-label">Tipo</span><span class="detail-value">Protecci&oacute;n de pago</span></div>
   <div class="detail-row"><span class="detail-label">N&ordm; de p&oacute;liza</span><span class="detail-value">PQ-2025-08741</span></div>
   <div class="detail-row"><span class="detail-label">Vigencia</span><span class="detail-value">10 nov 2025 &mdash; 10 nov 2026</span></div>
-  <div class="policy-coverage"><div class="coverage-label">Coberturas incluidas</div><div class="coverage-items"><div class="coverage-item">&#10003; P&eacute;rdida de empleo involuntaria</div><div class="coverage-item">&#10003; Incapacidad temporal por baja m&eacute;dica</div><div class="coverage-item">&#10003; Cuotas cubiertas hasta 12 meses</div></div></div>
+  <div class="policy-coverage payment"><div class="coverage-label payment">Coberturas incluidas</div><div class="coverage-items"><div class="coverage-item">&#10003; P&eacute;rdida de empleo involuntaria</div><div class="coverage-item">&#10003; Incapacidad temporal por baja m&eacute;dica</div><div class="coverage-item">&#10003; Cuotas cubiertas hasta 12 meses</div></div></div>
   <button class="btn-primary-full" style="background:var(--gray-700)" onclick="showToast('PDF descargado')">Descargar p&oacute;liza completa</button>
 </div></div></div>
 
 <div class="modal-overlay" id="policy-modal-2" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
+  <div style="margin-bottom:12px"><span class="type-indicator type-payment"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span></div>
   <div class="modal-title">P&oacute;liza activa</div><div class="modal-subtitle">Zara &middot; Americana Blue</div>
   <div class="detail-row"><span class="detail-label">Importe cubierto</span><span class="detail-value">135,45 &euro;</span></div>
-  <div class="detail-row"><span class="detail-label">Tipo</span><span class="detail-value">Protecci&oacute;n de pago</span></div>
   <div class="detail-row"><span class="detail-label">N&ordm; de p&oacute;liza</span><span class="detail-value">PQ-2025-09102</span></div>
   <div class="detail-row"><span class="detail-label">Vigencia</span><span class="detail-value">10 nov 2025 &mdash; 10 nov 2026</span></div>
-  <div class="policy-coverage"><div class="coverage-label">Coberturas incluidas</div><div class="coverage-items"><div class="coverage-item">&#10003; P&eacute;rdida de empleo involuntaria</div><div class="coverage-item">&#10003; Incapacidad temporal por baja m&eacute;dica</div></div></div>
+  <div class="policy-coverage payment"><div class="coverage-label payment">Coberturas incluidas</div><div class="coverage-items"><div class="coverage-item">&#10003; P&eacute;rdida de empleo involuntaria</div><div class="coverage-item">&#10003; Incapacidad temporal por baja m&eacute;dica</div></div></div>
   <button class="btn-primary-full" style="background:var(--gray-700)" onclick="showToast('PDF descargado')">Descargar p&oacute;liza completa</button>
 </div></div></div>
 
 <div class="modal-overlay" id="policy-modal-3" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
+  <div style="margin-bottom:12px"><span class="type-indicator type-payment"><svg class="type-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</span></div>
   <div class="modal-title">P&oacute;liza activa</div><div class="modal-subtitle">Adidas &middot; Zapatillas</div>
   <div class="detail-row"><span class="detail-label">Importe cubierto</span><span class="detail-value">56,34 &euro;</span></div>
-  <div class="detail-row"><span class="detail-label">Tipo</span><span class="detail-value">Protecci&oacute;n de pago</span></div>
   <div class="detail-row"><span class="detail-label">N&ordm; de p&oacute;liza</span><span class="detail-value">PQ-2025-09215</span></div>
   <div class="detail-row"><span class="detail-label">Vigencia</span><span class="detail-value">3 nov 2025 &mdash; 3 nov 2026</span></div>
-  <div class="policy-coverage"><div class="coverage-label">Coberturas incluidas</div><div class="coverage-items"><div class="coverage-item">&#10003; P&eacute;rdida de empleo involuntaria</div><div class="coverage-item">&#10003; Incapacidad temporal por baja m&eacute;dica</div></div></div>
+  <div class="policy-coverage payment"><div class="coverage-label payment">Coberturas incluidas</div><div class="coverage-items"><div class="coverage-item">&#10003; P&eacute;rdida de empleo involuntaria</div><div class="coverage-item">&#10003; Incapacidad temporal por baja m&eacute;dica</div></div></div>
   <button class="btn-primary-full" style="background:var(--gray-700)" onclick="showToast('PDF descargado')">Descargar p&oacute;liza completa</button>
 </div></div></div>
 
@@ -363,8 +495,8 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 
 <div class="modal-overlay" id="help-modal" onclick="closeModalOnOverlay(event)"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-content">
   <div class="modal-title">&iquest;C&oacute;mo funciona ProteQt?</div><div class="modal-subtitle">Todo lo que necesitas saber sobre tus seguros</div>
-  <div style="margin-bottom:16px"><div style="font-size:14px;font-weight:700;color:var(--gray-800);margin-bottom:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Protecci&oacute;n de pago</div><div style="font-size:13px;color:var(--gray-600);line-height:1.5">Te cubre en caso de p&eacute;rdida de empleo involuntaria o incapacidad temporal por baja m&eacute;dica. Tus cuotas pendientes seguir&aacute;n cubiertas durante hasta 12 meses.</div></div>
-  <div><div style="font-size:14px;font-weight:700;color:var(--gray-800);margin-bottom:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Protecci&oacute;n electr&oacute;nica</div><div style="font-size:13px;color:var(--gray-600);line-height:1.5">Cobertura frente a da&ntilde;o accidental y robo para tus dispositivos electr&oacute;nicos. Incluye reparaci&oacute;n o reemplazo.</div></div>
+  <div style="margin-bottom:20px;padding:16px;background:var(--primary-bg-soft);border-radius:var(--radius-md)"><div style="font-size:14px;font-weight:700;color:var(--gray-800);margin-bottom:6px;display:flex;align-items:center;gap:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Protecci&oacute;n de pago</div><div style="font-size:13px;color:var(--gray-600);line-height:1.5">Te cubre en caso de p&eacute;rdida de empleo involuntaria o incapacidad temporal por baja m&eacute;dica. Tus cuotas pendientes seguir&aacute;n cubiertas durante hasta 12 meses.</div></div>
+  <div style="padding:16px;background:var(--blue-bg-soft);border-radius:var(--radius-md)"><div style="font-size:14px;font-weight:700;color:var(--gray-800);margin-bottom:6px;display:flex;align-items:center;gap:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Protecci&oacute;n electr&oacute;nica</div><div style="font-size:13px;color:var(--gray-600);line-height:1.5">Cobertura frente a da&ntilde;o accidental y robo para tus dispositivos electr&oacute;nicos. Incluye reparaci&oacute;n o reemplazo.</div></div>
 </div></div></div>
 
 <div class="toast" id="toast"></div>
@@ -372,10 +504,65 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800
 <script>
 function openModal(id){var m=document.getElementById(id);if(m){m.classList.add('active');document.body.style.overflow='hidden'}}
 function closeModalOnOverlay(e){if(e.target===e.currentTarget){e.target.classList.remove('active');document.body.style.overflow=''}}
-function filterTab(el,type){document.querySelectorAll('.tab-pill').forEach(function(t){t.classList.remove('active')});el.classList.add('active');showToast(type==='all'?'Mostrando todos':type==='payment'?'Filtrando: Proteccion de pago':'Filtrando: Proteccion electronica')}
-function selectOption(el){var p=el.closest('.modal-content');p.querySelectorAll('.protection-option').forEach(function(o){o.classList.remove('selected')});el.classList.add('selected');var price=el.querySelector('.option-price').textContent;var name=el.querySelector('.option-name').textContent;p.querySelector('.btn-primary-full').textContent='Contratar '+name.toLowerCase()+' \u2014 '+price}
-function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');document.querySelectorAll('.modal-overlay.active').forEach(function(m){m.classList.remove('active')});document.body.style.overflow='';setTimeout(function(){t.classList.remove('show')},2500)}
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.active').forEach(function(m){m.classList.remove('active')});document.body.style.overflow=''}})
+
+// Functional filter tabs
+function filterTab(el,type){
+  document.querySelectorAll('.tab-pill').forEach(function(t){t.classList.remove('active')});
+  el.classList.add('active');
+
+  var items=document.querySelectorAll('.section-filterable');
+  items.forEach(function(item){
+    if(type==='all'){
+      item.classList.remove('hidden');
+    } else {
+      if(item.getAttribute('data-type')===type){
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    }
+  });
+
+  // Update claims grid layout
+  var claimsGrid=document.querySelector('.claims-grid');
+  var visibleClaims=claimsGrid.querySelectorAll('.claim-card:not(.hidden)');
+  if(visibleClaims.length===1){
+    claimsGrid.style.gridTemplateColumns='1fr';
+  } else {
+    claimsGrid.style.gridTemplateColumns='1fr 1fr';
+  }
+}
+
+function selectOption(el){
+  var p=el.closest('.modal-content');
+  p.querySelectorAll('.protection-option').forEach(function(o){o.classList.remove('selected')});
+  el.classList.add('selected');
+  var price=el.querySelector('.option-price').textContent;
+  var btn=p.querySelector('.btn-primary-full');
+  var isDevice=el.classList.contains('type-device-option');
+  btn.textContent='Contratar protecci\u00f3n \u2014 '+price;
+  if(isDevice){
+    btn.classList.add('blue');
+  } else {
+    btn.classList.remove('blue');
+  }
+}
+
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  document.querySelectorAll('.modal-overlay.active').forEach(function(m){m.classList.remove('active')});
+  document.body.style.overflow='';
+  setTimeout(function(){t.classList.remove('show')},2500);
+}
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay.active').forEach(function(m){m.classList.remove('active')});
+    document.body.style.overflow='';
+  }
+});
 </script>
 </body>
 </html>
